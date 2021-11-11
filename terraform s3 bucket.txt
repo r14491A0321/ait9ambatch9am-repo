@@ -1,0 +1,39 @@
+provider "aws" {
+  region     = "us-east-1"
+  access_key = "AKIA4XCU6XZXKLN25MWN"
+  secret_key = "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"
+}
+
+
+provider "aws" {
+  region     = "us-east-2"
+  access_key = "AKIA4XCU6XZXKLN25MWN"
+  secret_key = "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"
+  alias="useast2"
+}
+
+
+resource "aws_instance" "us-east-1" {
+  ami           = "ami-01cc34ab2709337aa" # us-east-1
+  instance_type = "t2.micro"
+}
+
+resource "aws_instance" "us-east-2" {
+  ami           = "ami-0f19d220602031aed" # us-east-2
+  instance_type = "t2.micro"
+  provider=aws.useast2
+}
+
+resource "aws_s3_bucket" "myfirstbucket" {
+  bucket = "s3-ec2-ashok-classroom-tf-bucket"
+  acl    = "private"
+
+  tags = {
+    Name        = "My Terraform bucket"
+    Environment = "Dev-Env"
+  }
+  versioning{
+        enabled=true
+}
+}
+
