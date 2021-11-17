@@ -1,3 +1,7 @@
 this is rajesh kilaru 
 my wife name is deepu sakamuri
 i go marry by him
+
+Dividing the network is called subnet
+	- Any IP 192.168.1.0 i.e., id ends with '0' is called Network ID
+	- 192.168.1.255 is Broadcast ID
